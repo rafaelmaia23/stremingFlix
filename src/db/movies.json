@@ -1,0 +1,123 @@
+{
+  "movies": [
+    {
+      "id": "11",
+      "title": "Star Wars",
+      "duration": 121,
+      "release": "1977-05-25",
+      "score": 8.204,
+      "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+      "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+      "backdrop_path": "/4qCqAdHcNKeAHcK8tJ8wNJZa9cx.jpg",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "directors": "George Lucas",
+      "genre_names": "Action, Adventure, Science Fiction"
+    },
+    {
+      "id": "299536",
+      "title": "Avengers: Infinity War",
+      "duration": 149,
+      "release": "2018-04-25",
+      "score": 8.241,
+      "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+      "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+      "backdrop_path": "/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "directors": "Anthony Russo, Joe Russo",
+      "genre_names": "Action, Adventure, Science Fiction"
+    },
+    {
+      "id": "426063",
+      "title": "Nosferatu",
+      "duration": 133,
+      "release": "2024-12-25",
+      "score": 6.8,
+      "overview": "A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.",
+      "poster_path": "/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
+      "backdrop_path": "/uWOJbarUXfVf6B4o0368dh138eR.jpg",
+      "genre_ids": [
+        18,
+        14,
+        27
+      ],
+      "directors": "Robert Eggers",
+      "genre_names": "Drama, Fantasy, Horror"
+    },
+    {
+      "id": "272",
+      "title": "Batman Begins",
+      "duration": 140,
+      "release": "2005-06-10",
+      "score": 7.7,
+      "overview": "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.",
+      "poster_path": "/4MpN4kIEqUjW8OPtOQJXlTdHiJV.jpg",
+      "backdrop_path": "/ew5FcYiRhTYNJAkxoVPMNlCOdVn.jpg",
+      "genre_ids": [
+        28,
+        80,
+        18
+      ],
+      "directors": "Christopher Nolan",
+      "genre_names": "Action, Crime, Drama"
+    },
+    {
+      "id": "129",
+      "title": "Spirited Away",
+      "duration": 125,
+      "release": "2001-07-20",
+      "score": 8.537,
+      "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+      "poster_path": "/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+      "backdrop_path": "/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        14
+      ],
+      "directors": "Hayao Miyazaki",
+      "genre_names": "Animation, Family, Fantasy"
+    },
+    {
+      "id": 181812,
+      "title": "Star Wars: The Rise of Skywalker",
+      "duration": 142,
+      "release": "2019-12-18",
+      "score": 6.311,
+      "overview": "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.",
+      "poster_path": "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+      "backdrop_path": "/auJKGst3vXpJozHZh4nMFs0xWIU.jpg",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "directors": "J.J. Abrams",
+      "genre_names": "Action, Adventure, Science Fiction"
+    },
+    {
+      "id": 671,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "duration": 152,
+      "release": "2001-11-16",
+      "score": 7.906,
+      "overview": "Harry Potter has lived under the stairs at his aunt and uncle's house his whole life. But on his 11th birthday, he learns he's a powerful wizard—with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school's kindly headmaster, Harry uncovers the truth about his parents' deaths—and about the villain who's to blame.",
+      "poster_path": "/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
+      "backdrop_path": "/5jkE2SzR5uR2egEb1rRhF22JyWN.jpg",
+      "genre_ids": [
+        12,
+        14
+      ],
+      "directors": "Chris Columbus",
+      "genre_names": "Adventure, Fantasy"
+    }
+  ],
+  "genres": []
+}
