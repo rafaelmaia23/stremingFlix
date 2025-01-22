@@ -1,14 +1,22 @@
 import Title from "@/components/Title";
 import Banner from "@/components/Banner";
-import bannerImg from "@/assets/banner.webp";
 import Section from "@/components/Section";
 import MoviesList from "@/components/MoviesList";
 import { useMovies } from "@/hooks/useMovies";
 import { useGenres } from "@/hooks/useGenres";
+import { useEffect } from "react";
+import Modal from "@/components/Modal";
 
 const HomePage = () => {
-    const { movies } = useMovies();
+    const { movies, movieBanner, fetchPopularMovie } = useMovies();
     const { genres } = useGenres();
+
+    useEffect(() => {
+        const fetchBanner = async () => {
+            await fetchPopularMovie();
+        };
+        fetchBanner();
+    }, []);
 
     const getMoviesByGenre = (genreId) => {
         return movies.filter((movie) => movie.genre_ids.includes(genreId));
@@ -32,7 +40,14 @@ const HomePage = () => {
             <Title margin="0 0 1rem 0" align="left">
                 <h1>Organize os filmes que você quer ver!</h1>
             </Title>
-            <Banner img={bannerImg} title="star wras" />
+            <Section>
+                <Banner
+                    title="Recomendamos para você:"
+                    movie={movieBanner}
+                    addButton={true}
+                />
+            </Section>
+
             <Section>
                 {movies.length > 0 ? (
                     <>
@@ -53,6 +68,7 @@ const HomePage = () => {
                     </Title>
                 )}
             </Section>
+            <Modal />
         </>
     );
 };

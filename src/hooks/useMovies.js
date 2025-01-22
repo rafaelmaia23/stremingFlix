@@ -2,8 +2,23 @@ import { useContext } from "react";
 import { MoviesContext } from "@/contexts/MoviesContext/MoviesContext";
 
 export const useMovies = () => {
-    const { movies, setMovies, addMovie, editMovie, removeMovie } =
-        useContext(MoviesContext);
+    const {
+        movies,
+        setMovies,
+        addMovie,
+        editMovie,
+        removeMovie,
+        movieBanner,
+        fetchPopularMovie,
+    } = useContext(MoviesContext);
 
-    return { movies, setMovies, addMovie, editMovie, removeMovie };
+    return {
+        movies,
+        setMovies,
+        addMovie,
+        editMovie,
+        removeMovie,
+        movieBanner,
+        fetchPopularMovie,
+    };
 };

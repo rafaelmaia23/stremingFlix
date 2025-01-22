@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import Container from "@/components/Container";
 import { MoviesProvider } from "@/contexts/MoviesContext/MoviesProvider";
 import { GenresProvider } from "@/contexts/GenresContext/GenresProvider";
+import { ModalProvider } from "@/contexts/ModalContext/ModalProvider";
 
 const BasePage = () => {
     return (
@@ -13,9 +14,11 @@ const BasePage = () => {
             <main>
                 <GenresProvider>
                     <MoviesProvider>
-                        <Container>
-                            <Outlet />
-                        </Container>
+                        <ModalProvider>
+                            <Container>
+                                <Outlet />
+                            </Container>
+                        </ModalProvider>
                     </MoviesProvider>
                 </GenresProvider>
             </main>

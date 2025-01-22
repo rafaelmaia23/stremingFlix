@@ -106,6 +106,8 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const handleLinkClick = () => setIsMenuOpen(false);
+
     return (
         <nav>
             {/* Menu Mobile */}
@@ -124,6 +126,7 @@ const Navbar = () => {
                     <StyledNavLink
                         to="/"
                         className={({ isActive }) => (isActive ? "active" : "")}
+                        onClick={handleLinkClick}
                     >
                         Início
                     </StyledNavLink>
@@ -132,6 +135,7 @@ const Navbar = () => {
                     <StyledNavLink
                         to="/add-movie"
                         className={({ isActive }) => (isActive ? "active" : "")}
+                        onClick={handleLinkClick}
                     >
                         Cadastrar
                     </StyledNavLink>

@@ -17,7 +17,7 @@ const MoviePage = ({ type = "add" }) => {
     const { movieSuggestions, setMovieSuggestions, fetchMovieSuggestions } =
         useMovieSuggestions();
     const { movieQuery, setMovieQuery } = useMovieQuery();
-    const { setSelectedMovie } = useSelectedMovie();
+    const { setSelectedMovie, onSelectedMovie } = useSelectedMovie();
     const { movies, addMovie } = useMovies();
     const [focused, setFocused] = useState(false);
 
@@ -40,9 +40,15 @@ const MoviePage = ({ type = "add" }) => {
     }, []);
 
     useEffect(() => {
-        id
-            ? setSelectedMovie(movies.find((movie) => movie.id === id))
-            : setSelectedMovie(null);
+        if (id) {
+            if (type === "edit") {
+                setSelectedMovie(movies.find((movie) => movie.id === id));
+            } else if (type === "add") {
+                onSelectedMovie(id);
+            }
+        } else {
+            setSelectedMovie(null);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 

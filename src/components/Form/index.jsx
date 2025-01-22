@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSelectedMovie } from "@/hooks/useSelectedMovie";
 import { useMovies } from "@/hooks/useMovies";
 import { breakpoints } from "@/utils/breakpoints";
+import MultiSelect from "@/components/MultiSelect";
 
 const StyledForm = styled.form`
     display: flex;
@@ -59,6 +60,7 @@ const StyledInput = styled.input`
     border-radius: 0.25rem;
     font-size: 1rem;
     outline: none;
+    background-color: var(--white);
     &:focus {
         border-color: var(--aqua-blue);
     }
@@ -70,6 +72,7 @@ const StyledTextArea = styled.textarea`
     min-height: 100px;
     padding: 0.5rem;
     border: 3px solid var(--cool-gray);
+    background-color: var(--white);
     border-radius: 0.25rem;
     font-size: 1rem;
     outline: none;
@@ -120,16 +123,15 @@ const Form = ({ onSubmit, type = "add" }) => {
                 type="text"
                 id="id"
                 hidden
-                readOnly={type === "add"}
+                readOnly
                 value={selectedMovie?.id || ""}
-                onChange={handleOnChange}
             />
             <InputWrapper>
                 <StyledLabel htmlFor="title">Título:</StyledLabel>
                 <StyledInput
                     type="text"
                     id="title"
-                    readOnly={type === "add"}
+                    // readOnly={type === "add"}
                     value={selectedMovie?.title || ""}
                     onChange={handleOnChange}
                 />
@@ -140,39 +142,29 @@ const Form = ({ onSubmit, type = "add" }) => {
                     <StyledInput
                         type="text"
                         id="directors"
-                        readOnly={type === "add"}
+                        // readOnly={type === "add"}
                         value={selectedMovie?.directors || ""}
                         onChange={handleOnChange}
                     />
                 </InputWrapper>
                 <InputWrapper>
-                    <StyledLabel htmlFor="genre_names">Generos:</StyledLabel>
+                    <StyledLabel htmlFor="release">Lançamento:</StyledLabel>
                     <StyledInput
                         type="text"
-                        id="genre_names"
-                        readOnly={type === "add"}
-                        value={selectedMovie?.genre_names || ""}
+                        id="release"
+                        // readOnly={type === "add"}
+                        value={selectedMovie?.release || ""}
                         onChange={handleOnChange}
                     />
                 </InputWrapper>
             </FormDivider>
             <FormDivider>
                 <InputWrapper>
-                    <StyledLabel htmlFor="release">Lançamento:</StyledLabel>
-                    <StyledInput
-                        type="text"
-                        id="release"
-                        readOnly={type === "add"}
-                        value={selectedMovie?.release || ""}
-                        onChange={handleOnChange}
-                    />
-                </InputWrapper>
-                <InputWrapper>
                     <StyledLabel htmlFor="duration">Duração(min):</StyledLabel>
                     <StyledInput
                         type="text"
                         id="duration"
-                        readOnly={type === "add"}
+                        // readOnly={type === "add"}
                         value={
                             selectedMovie?.duration
                                 ? `${selectedMovie.duration}`
@@ -186,7 +178,7 @@ const Form = ({ onSubmit, type = "add" }) => {
                     <StyledInput
                         type="text"
                         id="score"
-                        readOnly={type === "add"}
+                        // readOnly={type === "add"}
                         value={
                             selectedMovie?.score ? `${selectedMovie.score}` : ""
                         }
@@ -194,13 +186,23 @@ const Form = ({ onSubmit, type = "add" }) => {
                     />
                 </InputWrapper>
             </FormDivider>
-
+            <InputWrapper>
+                <StyledLabel htmlFor="genre_names">Generos:</StyledLabel>
+                {/* <StyledInput
+                    type="text"
+                    id="genre_names"
+                    // readOnly={type === "add"}
+                    value={selectedMovie?.genre_names || ""}
+                    onChange={handleOnChange}
+                /> */}
+                <MultiSelect />
+            </InputWrapper>
             <InputWrapper>
                 <StyledLabel htmlFor="overview">Descrição:</StyledLabel>
                 <StyledTextArea
                     type="text"
                     id="overview"
-                    readOnly={type === "add"}
+                    // readOnly={type === "add"}
                     value={selectedMovie?.overview || ""}
                     onChange={handleOnChange}
                 />

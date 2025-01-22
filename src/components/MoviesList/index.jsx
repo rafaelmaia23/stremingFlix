@@ -1,6 +1,7 @@
 import MovieCard from "@/components/MovieCard";
 import Title from "@/components/Title";
 import styled from "styled-components";
+import { useModal } from "@/hooks/useModal";
 
 const StyledSection = styled.section`
     display: flex;
@@ -16,7 +17,17 @@ const StyledMoviesSection = styled.section`
     box-sizing: border-box;
 `;
 
+const StyledButton = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 const MoviesList = ({ movies, title }) => {
+    const { openModal } = useModal();
     return (
         movies.length > 0 && (
             <StyledSection>
@@ -25,7 +36,12 @@ const MoviesList = ({ movies, title }) => {
                 </Title>
                 <StyledMoviesSection>
                     {movies.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} simbol={true} />
+                        <StyledButton
+                            key={movie.id}
+                            onClick={() => openModal(movie)}
+                        >
+                            <MovieCard movie={movie} simbol={true} />
+                        </StyledButton>
                     ))}
                 </StyledMoviesSection>
             </StyledSection>

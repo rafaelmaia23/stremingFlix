@@ -3,31 +3,18 @@ import { MoviesContext } from "@/contexts/MoviesContext/MoviesContext";
 import axios from "axios";
 import { useGenres } from "../../hooks/useGenres";
 import { useNavigate } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
 export const MoviesProvider = ({ children }) => {
     const navigate = useNavigate();
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
     const LOCAL_DB_URL = "http://localhost:3000/movies";
-    // const LOCAL_DB_URL = "http://127.0.0.1:3000/movies";
-
-    // const SELECTED_MOVIE_INITIAL_STATE = {
-    //     id: "",
-    //     title: "",
-    //     duration: "",
-    //     release: "",
-    //     score: "",
-    //     description: "",
-    //     poster: "",
-    //     backdrop: "",
-    //     genre_ids: [],
-    //     genre_names: "",
-    //     directors: "",
-    // };
     const [movies, setMovies] = useState([]);
     const [movieSuggestions, setMovieSuggestions] = useState("");
     const [movieQuery, setMovieQuery] = useState("");
     const [selectedMovie, setSelectedMovie] = useState(null);
     const { getGenreNames } = useGenres();
+    const [movieBanner, setMovieBanner] = useState(null);
 
     //carrega os filmes da DB local
     useEffect(() => {
@@ -53,6 +40,33 @@ export const MoviesProvider = ({ children }) => {
             }
         } else {
             setMovieSuggestions([]);
+        }
+    };
+
+    //busca uma recomendação de filme popular no TMDB
+    const fetchPopularMovie = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/movie/popular`,
+                {
+                    params: {
+                        api_key: API_KEY,
+                        language: "pt-BR",
+                        page: 1,
+                    },
+                }
+            );
+            const movies = response.data.results;
+            const goodMovies = movies.filter((movie) => movie.popularity > 50);
+            const randomMovie =
+                goodMovies[Math.floor(Math.random() * goodMovies.length)];
+            const movie = await fetchMovieDetails(randomMovie.id);
+            const directors = await fetchDirectors(randomMovie.id);
+            const appMovie = mapAppMovie(movie, directors);
+
+            setMovieBanner(appMovie);
+        } catch (error) {
+            console.error("Erro ao buscar filme popular:", error);
         }
     };
 
@@ -148,6 +162,9 @@ export const MoviesProvider = ({ children }) => {
 
     //adiciona o filme selecionado na lista db local
     const addMovie = async () => {
+        if (selectedMovie.id === "" || selectedMovie.id === null) {
+            selectedMovie.id = uuidv4();
+        }
         try {
             await axios.post(LOCAL_DB_URL, selectedMovie, {
                 headers: {
@@ -209,6 +226,8 @@ export const MoviesProvider = ({ children }) => {
                 addMovie,
                 editMovie,
                 removeMovie,
+                movieBanner,
+                fetchPopularMovie,
             }}
         >
             {children}

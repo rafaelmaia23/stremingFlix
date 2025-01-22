@@ -86,7 +86,7 @@
       "genre_names": "Animation, Family, Fantasy"
     },
     {
-      "id": 181812,
+      "id": "181812",
       "title": "Star Wars: The Rise of Skywalker",
       "duration": 142,
       "release": "2019-12-18",
@@ -103,7 +103,7 @@
       "genre_names": "Action, Adventure, Science Fiction"
     },
     {
-      "id": 671,
+      "id": "671",
       "title": "Harry Potter and the Philosopher's Stone",
       "duration": 152,
       "release": "2001-11-16",
@@ -117,7 +117,23 @@
       ],
       "directors": "Chris Columbus",
       "genre_names": "Adventure, Fantasy"
+    },
+    {
+      "id": 845781,
+      "title": "Red One",
+      "duration": 124,
+      "release": "2024-10-31",
+      "score": 7.071,
+      "overview": "After Santa Claus (codename: Red One) is kidnapped, the North Pole's Head of Security must team up with the world's most infamous tracker in a globe-trotting, action-packed mission to save Christmas.",
+      "poster_path": "/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg",
+      "backdrop_path": "/cjEcqdRdPQJhYre3HUAc5538Gk8.jpg",
+      "genre_ids": [
+        28,
+        14,
+        35
+      ],
+      "directors": "Jake Kasdan",
+      "genre_names": "Action, Comedy, Fantasy"
     }
-  ],
-  "genres": []
+  ]
 }

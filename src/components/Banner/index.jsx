@@ -2,10 +2,11 @@ import styled from "styled-components";
 import Title from "@/components/Title";
 import { breakpoints } from "@/utils/breakpoints";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const StyledBannerContainer = styled.div`
     width: 100%;
-    height: 347px;
+    height: 400px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,7 +14,7 @@ const StyledBannerContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
     position: relative;
     padding: 1rem;
@@ -30,15 +31,12 @@ const StyledBannerContainer = styled.div`
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
         z-index: 1;
     }
 
     & > * {
         z-index: 2;
-    }
-
-    @media (min-width: ${breakpoints.laptop}) {
-        justify-content: center;
     }
 `;
 
@@ -48,22 +46,12 @@ const StyledInfoContainer = styled.div`
     align-items: center;
     gap: 1rem;
     width: 100%;
-`;
-
-const StyledImage = styled.img`
-    width: 160px;
-    height: 240px;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 320px;
 `;
 
 const StyledCard = styled.div`
-    width: 160px;
-    height: 240px;
-    max-height: 240px;
-    max-width: 300px;
-    flex: 1;
+    width: 100%;
+    height: 230px;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
@@ -71,12 +59,19 @@ const StyledCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 0.5rem;
     box-sizing: border-box;
 
     @media (min-width: ${breakpoints.tablet}) {
         max-width: 600px;
     }
+`;
+
+const StyledImage = styled.img`
+    height: 230px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const StyledCardInfo = styled.p`
@@ -85,9 +80,28 @@ const StyledCardInfo = styled.p`
     margin: 0 0 0.5rem 0;
     text-align: left;
     margin: 0;
+    height: 100%;
 `;
 
-const Banner = ({ img, title }) => {
+const StyledButton = styled.button`
+    padding: 0.5rem 1rem;
+    background-color: var(--black);
+    border: 2px solid var(--white);
+    color: var(--white);
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: var(--white);
+        border: 2px solid var(--black);
+        color: var(--black);
+    }
+`;
+
+const Banner = ({ title, movie, addButton = false }) => {
+    const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(
         window.innerWidth >= breakpoints.tablet
     );
@@ -106,37 +120,53 @@ const Banner = ({ img, title }) => {
         };
     }, []);
 
-    return (
-        <section>
-            <StyledBannerContainer $background={img}>
+    const handleOnCLick = (event) => {
+        event.preventDefault();
+        navigate(`/add-movie/${movie.id}`);
+    };
+
+    return movie ? (
+        <StyledBannerContainer
+            $background={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+        >
+            {title && (
                 <Title color="var(--white)" align="left">
-                    <h2>Recomendação da semana:</h2>
+                    <h2>{title}</h2>
                 </Title>
-                <StyledInfoContainer>
-                    <StyledCard>
-                        <Title color="var(--black)" align="left">
-                            <h3>Star Wars: Rogue One</h3>
-                        </Title>
-                        <StyledCardInfo>
-                            Diretor: Nome do diretor
-                        </StyledCardInfo>
-                        <StyledCardInfo>Lançamento: 12/06/1879</StyledCardInfo>
-                        <StyledCardInfo>Duração: 200 minutos</StyledCardInfo>
-                        <StyledCardInfo>Nota: 8.5/10</StyledCardInfo>
-                        {isVisible && (
-                            <StyledCardInfo>
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Maiores, porro! Enim ipsa
-                                dolorem quas! Consequatur, odit rerum voluptas
-                                vero fuga esse minus velit ipsum perspiciatis
-                                culpa cupiditate repellat iusto maiores?
-                            </StyledCardInfo>
-                        )}
-                    </StyledCard>
-                    <StyledImage src={img} alt={title} />
-                </StyledInfoContainer>
-            </StyledBannerContainer>
-        </section>
+            )}
+
+            <StyledInfoContainer>
+                <StyledCard>
+                    <Title color="var(--black)" align="left">
+                        <h3>{movie.title}</h3>
+                    </Title>
+                    <StyledCardInfo>
+                        Diretor(es): {movie.directors}
+                    </StyledCardInfo>
+                    <StyledCardInfo>Lançamento: {movie.release}</StyledCardInfo>
+                    <StyledCardInfo>
+                        Duração: {movie.duration} minutos
+                    </StyledCardInfo>
+                    <StyledCardInfo>Nota: {movie.score}/10</StyledCardInfo>
+                    {isVisible && (
+                        <StyledCardInfo>{movie.overview}</StyledCardInfo>
+                    )}
+                </StyledCard>
+                <StyledImage
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                />
+            </StyledInfoContainer>
+            {addButton && (
+                <StyledButton onClick={handleOnCLick}>
+                    Adicionar aos seus filmes
+                </StyledButton>
+            )}
+        </StyledBannerContainer>
+    ) : (
+        <Title align="center" color="var(--white)">
+            <h3>Carregando Banner com sugestão de filme...</h3>
+        </Title>
     );
 };
 

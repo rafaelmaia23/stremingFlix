@@ -14,6 +14,10 @@ const AppRoutes = () => {
                         element={<MoviePage type="add" />}
                     />
                     <Route
+                        path="add-movie/:id"
+                        element={<MoviePage type="add" />}
+                    />
+                    <Route
                         path="edit-movie/:id"
                         element={<MoviePage type="edit" />}
                     />
